@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Heart Code Animation</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <section class="preview-panel" aria-label="Animated heart preview">
+      <canvas id="heartCanvas"></canvas>
+    </section>
+
+    <section class="code-panel" aria-label="Code preview">
+      <div class="window-bar">
+        <span class="window-title">heart.py</span>
+        <div class="window-actions" aria-hidden="true">
+          <span>—</span><span>□</span><span>×</span>
+        </div>
+      </div>
+      <pre class="code"><code><span class="kw">import</span> turtle
+<span class="kw">import</span> math
+<span class="kw">import</span> random
+screen = turtle.Screen()
+screen.bgcolor(<span class="str">"black"</span>)
+t = turtle.Turtle()
+t.speed(<span class="num">0</span>)
+t.hideturtle()
+t.pensize(<span class="num">1</span>)
+colors = [<span class="str">"red"</span>, <span class="str">"blue"</span>, <span class="str">"lime"</span>,
+          <span class="str">"yellow"</span>, <span class="str">"cyan"</span>, <span class="str">"magenta"</span>,
+          <span class="str">"orange"</span>, <span class="str">"pink"</span>]
+
+<span class="kw">for</span> i <span class="kw">in</span> range(<span class="num">120</span>):
+    t.penup()
+    t.goto(<span class="num">0</span>, <span class="num">40</span>)
+    angle = i * (math.pi * <span class="num">2</span>) / <span class="num">120</span>
+    x = <span class="num">16</span> * (math.sin(angle) ** <span class="num">3</span>) * <span class="num">15</span>
+    y = (<span class="num">13</span> * math.cos(angle)
+         - <span class="num">5</span> * math.cos(<span class="num">2</span> * angle)
+         - <span class="num">2</span> * math.cos(<span class="num">3</span> * angle)
+         - math.cos(<span class="num">4</span> * angle)) * <span class="num">15</span>
+    c = random.choice(colors)
+    t.color(c)
+    t.pendown()
+    t.goto(x, y)
+
+    <span class="kw">for</span> _ <span class="kw">in</span> range(<span class="num">8</span>):
+        t.forward(<span class="num">6</span>)
+        t.backward(<span class="num">6</span>)
+        t.right(<span class="num">45</span>)
+
+turtle.done()</code></pre>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
